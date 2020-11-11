@@ -1,60 +1,86 @@
-const path = require("path");
-const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
-const APP_DIR = path.resolve(__dirname, "./src");
-const MONACO_DIR = path.resolve(__dirname, "./node_modules/monaco-editor");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-var CopyWebpackPlugin = require("copy-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: './src/index.js',
   output: {
-    filename: "bundle.js",
-    path: path.join(__dirname, "public"),
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'index_bundle.js',
   },
-  mode: "development",
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin(),
+      new CssMinimizerPlugin(),
+    ],
+  },
+  mode: 'development',
   module: {
     rules: [
       {
-        loader: "babel-loader",
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        query: {
-          plugins: ["transform-object-assign"],
+        use: {
+          loader: "babel-loader"
+        }
+      },
+      {
+        test: /\.(scss)$/,
+        exclude: /node_modules/,
+        use: [MiniCssExtractPlugin.loader, 
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              importLoaders: 1,
+              localIdentName: "[local]",
+          },
+          },
+          'sass-loader'
+        ],
+        include: /\.module\.scss$/
+      },
+      {
+        test: /\.(css|scss)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader'
+        ],
+        exclude: /\.module\.scss$/
+      },
+      {
+        test: /\.(png|jpe?g|jpg|gif|ttf)$/i,
+        loader: 'file-loader',
+          options: {
+            outputPath: 'sdsds',
+          },
         },
-      },
       {
-        test: /\.css$/,
-        include: APP_DIR,
-        use: ["style-loader", "css-loader"],
-      },
-      {
-        test: /\.css$/,
-        include: MONACO_DIR,
-        use: ["style-loader", "css-loader"],
-      },
-      {
-        test: /\.svg$/,
-        use: "file-loader",
-      },
-      {
-        test: /\.ttf$/,
-        use: ["file-loader"],
-      },
-    ],
-  },
-  resolve: {
-    extensions: [".css", ".js"],
-  },
-  devServer: {
-    contentBase: path.join(__dirname, "public"),
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader"
+          }
+        ]
+      }
+    ]
   },
   plugins: [
-    new MonacoWebpackPlugin({
-      languages: ["json"],
+    new HtmlWebpackPlugin({
+      template: "src/index.html",
+      filename: "./index.html"
     }),
-    new MiniCssExtractPlugin(),
-    new CopyWebpackPlugin({
-      patterns: [{ from: "./src/assets", to: "assets" }],
+    new CopyWebpackPlugin({patterns: [
+      {from:'src/assets',to:'assets'} 
+    ]}),
+    new MiniCssExtractPlugin({
+      filename: "[name].[contentHash].css"
     }),
-  ],
+  ]
 };

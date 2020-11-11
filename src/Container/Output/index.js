@@ -90,7 +90,7 @@ const Output = () => {
   const loader = () => {
     return (
       <div className={`quote left`}>
-        <img className="round-avatar" src="assets/bot.jpg" />
+        <img className="round-avatar" src="assets/images/bot.jpg" />
         <div className="speech-bubble left">...</div>
         <div className="clear" />
       </div>
