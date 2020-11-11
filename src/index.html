@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/javascript">
+      document.addEventListener("DOMContentLoaded", function(event) {
+          window.CampK12 = {
+            translate: function(inputText, defaultLang, translateTo) {
+              return new Promise((resolve, reject) => {
+                // Note: Google translate API is paid hence not using the following code!
+                // fetch("https://translation.googleapis.com/language/translate/v2/?" + new URLSearchParams({
+                //     q: "Hello",
+                //     source: "en",
+                //     target: "hi",
+                //     key: ""
+                // })).then(res => console.log(res)).catch(err => console.log("Err: ", err))                
+               
+                setTimeout(() => {
+                  resolve(`translated text of ${inputText} is XYZ!`)
+                }, 2000)
+              })
+            }
+          }
+      });
+    </script>
+</body>
+</html>

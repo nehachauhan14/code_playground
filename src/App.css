@@ -1,0 +1,43 @@
+@font-face {
+  font-family: americantypewriter;
+  src: url(./assets/fonts/american_typewriter_regular.ttf);
+}
+
+@font-face {
+  font-family: quickstand;
+  src: url(./assets/fonts/OpenSans-Regular.ttf);
+}
+
+*:focus {
+  outline: none;
+}
+
+body {
+  margin: 0;
+  font-family: quickstand;
+  background-color: #171717;
+}
+
+.App {
+  text-align: center;
+  background-color: #171717;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.flex {
+  display: flex;
+  height: calc(100vh - 70px);
+}
+
+.flexStyle {
+  display: flex;
+  justify-content: flex-start;
+  white-space: normal;
+  position: relative;
+  height: 100%;
+}
+
+.header  { flex: 1 100%; }
+.editor-container { flex: 1;}
+.output-container  { flex: 2; }
