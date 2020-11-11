@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
     "dompurify": "^2.2.2",
     "monaco-editor-webpack-plugin": "^2.0.0",
     "react": "^16.12.0",
