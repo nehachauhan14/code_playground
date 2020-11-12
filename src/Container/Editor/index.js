@@ -3,6 +3,7 @@ import MonacoEditor from "react-monaco-editor";
 import styles from "./styles.css";
 import { useSelector, useDispatch } from "react-redux";
 import { setEditor, setInstances, setEditorContent } from "./action";
+
 const Editor = () => {
   const reducerData = useSelector((state) => state.editorReducer);
   const dispatch = useDispatch();
@@ -33,45 +34,109 @@ const Editor = () => {
 
   useEffect(() => {
     instances.length && switchTab();
-  }, [instances])
+  }, [instances]);
 
   const createEditor = () => {
-    const editor =  monaco.editor.create(document.getElementById("container"), editorOptions);
+    // autocompletion
+    monaco.languages.registerCompletionItemProvider("javascript", {
+      triggerCharacters: ["."],
+      provideCompletionItems: (model, position, context, token) => {
+        const textUntilPosition = model.getValueInRange({
+          startLineNumber: 1,
+          startColumn: 1,
+          endLineNumber: position.lineNumber,
+          endColumn: position.column,
+        });
+        if (
+          /(([\s|\n]+from\s+)|(\brequire\b\s*\())["|'][^'^"]*$/.test(
+            textUntilPosition
+          )
+        ) {
+          if (
+            textUntilPosition.endsWith(".") ||
+            textUntilPosition.endsWith("/")
+          ) {
+            return Object.keys(this.props.files)
+              .filter((path) => path !== this.props.path)
+              .map((path) => {
+                let file = getRelativePath(this.props.path, path);
+                if (file.startsWith(prefix)) {
+                  file = file.slice(typed.length);
+                  return {
+                    label: file,
+                    insertText: file.replace(/\.js$/, ""),
+                    kind: monaco.languages.CompletionItemKind.File,
+                  };
+                }
+                return null;
+              })
+              .filter(Boolean);
+          } else {
+            return Object.keys(this.props.dependencies).map((name) => ({
+              label: name,
+              detail: this.props.dependencies[name],
+              kind: monaco.languages.CompletionItemKind.Module,
+            }));
+          }
+        }
+      },
+    });
+
+    //editor creation
+    const editor = monaco.editor.create(
+      document.getElementById("container"),
+      editorOptions
+    );
     dispatch(setEditor(editor));
     addNewTab("main", editor);
-    editor.onDidChangeModelContent((e) => {
-    editor._modelData.model.uri == "main.js" && setIsEdited(true);
-    });
-  }
 
+    // modal content onchange event
+    editor.onDidChangeModelContent((e) => {
+      editor._modelData.model.uri == "main.js" && setIsEdited(true);
+    });
+  };
+
+  // Create a new model/tab of editor
   const addNewTab = (fileName, editorInstance) => {
     fileName = !fileName ? Math.random().toString(36).substring(7) : fileName;
     const instance = monaco.editor.createModel(
-      editorInstance ? defaultFn : `function hello() {\n\talert('Hello world ${fileName}!');\n}`,
+      editorInstance
+        ? defaultFn
+        : `function hello() {\n\talert('Hello world ${fileName}!');\n}`,
       "javascript",
       `${fileName}.js`
     );
+    monaco.editor.setModelLanguage(instance, "javascript");
     dispatch(setInstances([...instances, instance]));
-    editorInstance ? editorInstance.setModel(instance) : editor.setModel(instance);
-    setCurrentTab(instance.id)
+    editorInstance
+      ? editorInstance.setModel(instance)
+      : editor.setModel(instance);
+    setCurrentTab(instance.id);
   };
 
+  // To swich among tabs
   const switchTab = (tabname) => {
-    const instance = tabname ? [...instances].find((x) => x._associatedResource == tabname) : instances[instances.length - 1];
+    const instance = tabname
+      ? [...instances].find((x) => x._associatedResource == tabname)
+      : instances[instances.length - 1];
     editor.setModel(instance);
-    setCurrentTab(instance.id)
+    setCurrentTab(instance.id);
   };
 
+  // To delete existing tabs
   const deleteTab = (e, instance) => {
     e && e.stopPropagation();
-    const updatedInstances =  [...instances].filter((x) => x._associatedResource != instance.uri);
+    const updatedInstances = [...instances].filter(
+      (x) => x._associatedResource != instance.uri
+    );
     dispatch(setInstances(updatedInstances));
     const model = monaco.editor
       .getModels()
-      .find(model => model.uri === instance.uri);
+      .find((model) => model.uri === instance.uri);
     model && model.dispose();
-  }
+  };
 
+  // apply changes for Main.js
   const applyChanges = () => {
     try {
       const fn = new Function(`return ${editor.getValue()}`)();
@@ -84,6 +149,7 @@ const Editor = () => {
     }
   };
 
+  // Editor header JSX
   const header = () => (
     <div className="editor-header">
       <div className="left flex-combined">
@@ -94,7 +160,11 @@ const Editor = () => {
             onClick={() => switchTab(ins._associatedResource)}
           >
             <span>{ins._associatedResource}</span>
-            {ins.uri !== "main.js" && <span onClick={(e) => deleteTab(e, ins)} className="cross-icon">x</span>}
+            {ins.uri !== "main.js" && (
+              <span onClick={(e) => deleteTab(e, ins)} className="cross-icon">
+                x
+              </span>
+            )}
           </div>
         ))}
         <div className="add-icon" onClick={() => addNewTab()}>
@@ -113,7 +183,10 @@ const Editor = () => {
         </div>
       </div>
       <div className="right flex-combined">
-        <div className={`apply-btn ${isEdited ? "active-btn" : ""}`} onClick={() => isEdited && applyChanges()}>
+        <div
+          className={`apply-btn ${isEdited ? "active-btn" : ""}`}
+          onClick={() => isEdited && applyChanges()}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="11"
@@ -135,6 +208,7 @@ const Editor = () => {
       {header()}
       <div
         id="container"
+        data-lang="text/javascript"
         style={{ height: "100%", width: "600px" }}
       ></div>
     </div>

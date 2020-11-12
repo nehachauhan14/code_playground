@@ -5,6 +5,9 @@ var CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+const MONACO_DIR = path.resolve(__dirname, './node_modules/monaco-editor');
+const APP_DIR = path.resolve(__dirname, './src');
 
 module.exports = {
   entry: './src/index.js',
@@ -52,7 +55,11 @@ module.exports = {
           'css-loader',
           'sass-loader'
         ],
-        exclude: /\.module\.scss$/
+        include: APP_DIR,
+      },{
+        test: /\.css$/,
+        include: MONACO_DIR,
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(png|jpe?g|jpg|gif|ttf)$/i,
@@ -81,6 +88,9 @@ module.exports = {
     ]}),
     new MiniCssExtractPlugin({
       filename: "[name].[contentHash].css"
+    }),
+    new MonacoWebpackPlugin({
+      languages: ['javascript']
     }),
   ]
 };
