@@ -28,7 +28,7 @@ const Output = () => {
     try {
       const fn = new Function(`return ${currentEditorContent}`)();
       if (latestMessage && latestMessage.type == "incoming") {
-        if (fn && typeof fn == "function" && typeof fn.then === "function") {
+        if (fn && typeof fn == "function" && (fn.constructor.name === 'AsyncFunction' || typeof fn.then === "function")) {
           fn(latestMessage.message)
             .then((data) => {
               const response = {
