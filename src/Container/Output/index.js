@@ -28,7 +28,7 @@ const Output = () => {
     try {
       const fn = new Function(`return ${currentEditorContent}`)();
       if (latestMessage && latestMessage.type == "incoming") {
-        if (typeof fn == "function") {
+        if (fn && typeof fn == "function" && typeof fn.then === "function") {
           fn(latestMessage.message)
             .then((data) => {
               const response = {
@@ -44,6 +44,17 @@ const Output = () => {
             .catch((err) => {
               dispatch(setLoader(false));
             });
+        } else {
+          const data = fn(latestMessage.message);
+          const response = {
+            id: messagelist.length,
+            timestamp: Date.now(),
+            message: data,
+            type: "outgoing",
+          };
+          messagelist.push(response);
+          dispatch(setMessages(messagelist));
+          dispatch(setLoader(false));
         }
       }
     } catch (err) {
