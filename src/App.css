@@ -38,5 +38,5 @@ body {
 }
 
 .header  { flex: 1 100%; }
-.editor-container { flex: 1;}
+.editor-container { flex: 1.5;}
 .output-container  { flex: 2; }

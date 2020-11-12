@@ -209,7 +209,7 @@ const Editor = () => {
       <div
         id="container"
         data-lang="text/javascript"
-        style={{ height: "100%", width: "600px" }}
+        style={{ height: "100%" }}
       ></div>
     </div>
   );

@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "mode": "development",
   "scripts": {
     "start": "node server.js",
-    "build": "webpack --mode production",
+    "build": "webpack --mode development",
     "watch": "nodemon --exec \"npm run build && node server.js\" -e js --ignore dist/"
   },
   "keywords": [],
