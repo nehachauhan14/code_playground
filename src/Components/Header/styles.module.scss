@@ -1,10 +1,7 @@
 @import "/src/assets/css/variables";
 
 .header {
-    display: flex;
     flex: 1 100%;
-    align-items: center;
-    justify-content: space-between;
     color: $white-color;
     border-bottom: solid 2px rgb(255 255 255 / 0.9);
     height: 46px;
@@ -18,8 +15,6 @@
 }
 
 .headerLinks {
-    display: flex;
-    justify-content: space-evenly;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -27,8 +22,6 @@
     font-size: 12px;
     font-weight: 500;
     color: $pinkish-grey-color;
-    align-items: center; 
-
     > li {
         padding-left: 20px;
         padding-right: 20px;
@@ -36,9 +29,6 @@
 }
 
 .profileLink {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
 
     > .text {
         margin-left: 8px;

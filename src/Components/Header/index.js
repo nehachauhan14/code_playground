@@ -3,12 +3,12 @@ import styles from "./styles.module.scss";
 
 const Header = () => {
   return (
-    <header className={styles.header}>
+    <header className={`flex jcSpaceBetween alignCenter ${styles.header}`}>
       <span className={styles.headerLogo}>AI playground</span>
-      <ul className={styles.headerLinks}>
+      <ul className={`flex jcSpaceEvenly alignCenter ${styles.headerLinks}`}>
         <li>Learn AI</li>
         <li>Docs</li>
-        <li className={styles.profileLink}>
+        <li className={`flex jcSpaceBetween alignCenter ${styles.profileLink}`}>
           <img src="https://s3.amazonaws.com/uifaces/faces/twitter/stan/48.jpg" className={styles.avatar} alt="profile image" />
           <span className={styles.text}>Account</span>
           <svg

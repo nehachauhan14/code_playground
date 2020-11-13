@@ -151,8 +151,8 @@ const Editor = () => {
 
   // Editor header JSX
   const header = () => (
-    <div className={styles.editorHeader}>
-      <div className={`${styles.left} ${styles.flexCombined}`}>
+    <div className={`flex alignCenter jcSpaceBetween ${styles.editorHeader}`}>
+      <div className={`flex alignFlexEnd ${styles.left}`}>
         {instances.map((ins, idx) => (
           <div
             className={`${styles.tile} ${ins.id == currentTab ? styles.active : ""}`}
@@ -161,7 +161,7 @@ const Editor = () => {
           >
             <span>{ins._associatedResource}</span>
             {ins.uri !== "main.js" && (
-              <span onClick={(e) => deleteTab(e, ins)} className="cross-icon">
+              <span onClick={(e) => deleteTab(e, ins)} className="crossIcon">
                 x
               </span>
             )}
@@ -182,7 +182,7 @@ const Editor = () => {
           </svg>
         </div>
       </div>
-      <div className={`${styles.right} ${styles.flexCombined}`}>
+      <div className={`flex alignCenter jcCenter ${styles.right}`}>
         <div
           className={`${styles.applyBtn} ${isEdited ? styles.activeBtn : ""}`}
           onClick={() => isEdited && applyChanges()}

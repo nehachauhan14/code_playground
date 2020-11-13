@@ -30,8 +30,16 @@ body {
     align-items: center;
 }
 
+.alignFlexEnd {
+    align-items: flex-end;
+}
+
 .jcSpaceBetween {
     justify-content: space-between;
+}
+
+.jcCenter {
+  justify-content: center;
 }
 
 .jcSpaceEvenly {

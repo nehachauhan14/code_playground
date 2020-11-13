@@ -6,7 +6,6 @@
   padding-top: 7.3rem;
   padding-right: 4.4rem;
   padding-left: 5.125rem;
-  display: flex;
   flex-direction: column;
 
   .chatSection {
@@ -22,8 +21,7 @@
     .quote {
       display: block;
       padding-bottom: 16px;
-      align-items: center;
-    
+      
       &.left {
 
       }

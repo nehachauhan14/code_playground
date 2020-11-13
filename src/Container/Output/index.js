@@ -81,7 +81,7 @@ const Output = () => {
   const getMessageUi = (data, idx) => {
     return (
       <div
-        className={`${styles.quote} ${data.type == "incoming" ? styles.right : styles.left} `}
+        className={`alignCenter ${styles.quote} ${data.type == "incoming" ? styles.right : styles.left} `}
         key={idx}
       >
         <img
@@ -100,7 +100,7 @@ const Output = () => {
 
   const loader = () => {
     return (
-      <div className={`${styles.quote} ${styles.left}`}>
+      <div className={`alignCenter ${styles.quote} ${styles.left}`}>
         <img className={styles.roundAvatar} src="assets/images/bot.jpg" />
         <div className={`${styles.speechBubble} ${styles.left}`}>...</div>
         <div className={styles.clear} />
@@ -110,7 +110,7 @@ const Output = () => {
 
   return (
     <div className="outputContainer">
-      <div className={styles.chatContainer}>
+      <div className={`flex ${styles.chatContainer}`}>
         <div className={styles.chatSection} id="chat-section">
           {messages && messages.map((msg, idx) => getMessageUi(msg, idx))}
           {showLoader && loader()}
