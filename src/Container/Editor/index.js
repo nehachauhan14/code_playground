@@ -161,7 +161,7 @@ const Editor = () => {
           >
             <span>{ins._associatedResource}</span>
             {ins.uri !== "main.js" && (
-              <span onClick={(e) => deleteTab(e, ins)} className="crossIcon">
+              <span onClick={(e) => deleteTab(e, ins)} className={styles.crossIcon}>
                 x
               </span>
             )}
