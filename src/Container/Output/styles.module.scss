@@ -1,0 +1,76 @@
+@import "/src/assets/css/variables";
+
+.chatContainer {
+  border: none;
+  color: aliceblue;
+  padding-top: 7.3rem;
+  padding-right: 4.4rem;
+  padding-left: 5.125rem;
+  display: flex;
+  flex-direction: column;
+
+  .chatSection {
+    overflow-y: auto;
+    height: 392px;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 8px rgba(0, 0, 0, 0.08);
+    background-color: $dark-grey-background;
+    margin-bottom: 2.2rem;
+    padding: 20px 16px;
+    scroll-behavior: smooth;
+
+    .quote {
+      display: block;
+      padding-bottom: 16px;
+      align-items: center;
+    
+      &.left {
+
+      }
+
+      &.right {
+        .roundAvatar {
+          float: right;
+        }
+        .speechBubble {
+          float: right;
+        }
+      }
+    }
+  }
+
+  .inputSection {
+    border-radius: 4px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08);
+    background-color: $dark-grey-background;
+    font-size: 14px;
+    color: $dark-grey-color;
+    padding: 28px 0 26px 36px;
+    border: 0;
+  }
+}
+
+.roundAvatar {
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  float: left;
+  width: 26px;
+  margin: 4px;
+}
+
+.speechBubble {
+  border-radius: 16px;
+  background-color: $grey-background;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: $light-grey-color;
+  float: left;
+  word-wrap: break-word;
+  max-width: calc(100% - 80px);
+}
+
+.clear {
+  clear: both;
+}

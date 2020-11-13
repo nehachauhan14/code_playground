@@ -1,0 +1,12 @@
+@import "./assets/css/index.scss";
+
+.height100 {
+  height: 100vh;
+}
+
+.editorContainer { flex: 1.5;}
+.outputContainer  { flex: 2; }
+
+.view-lines {
+  width: auto !important;
+}

@@ -1,0 +1,79 @@
+@import "/src/assets/css/variables";
+
+.editorHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  border: solid 2px #2b2b2b;
+  border-left: 0;
+  height: 37px;
+
+  > .left {
+    width: 300px;
+    overflow: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tile {
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      border: solid 2px #2b2b2b;
+      background-color: #161616;
+      font-size: 12px;
+      font-weight: 500;
+      text-align: center;
+      color: $white-color;
+
+      &.active {
+        border-bottom: solid 1px #161616;
+      }
+
+      .crossIcon {
+        padding-left: 0.5rem;
+        cursor: pointer;
+      }
+    }
+
+    .addIcon {
+      padding: 0.5rem 1rem;
+    }
+  }
+
+  > .right {
+
+    .applyBtn {
+      color: $greyish-brown-color;
+      cursor: pointer;
+      padding: 0.25rem 1.2rem;
+      border-radius: 4px;
+      background-color: #282828;
+      cursor: not-allowed;
+
+      &.activeBtn {
+        background-color: $teal-background;
+        color: $white-color;
+        cursor: pointer;
+      }
+
+      > span {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+}
+
+.flexCombined {
+  display: flex;
+  align-items: flex-end;
+}
+
+.right.flexCombined {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

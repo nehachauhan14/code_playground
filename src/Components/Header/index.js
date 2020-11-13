@@ -1,16 +1,16 @@
 import React from "react";
-import styles from "./styles.css";
+import styles from "./styles.module.scss";
 
 const Header = () => {
   return (
-    <header className="header">
-      <span className="header-logo">AI playground</span>
-      <ul className="header-links">
+    <header className={styles.header}>
+      <span className={styles.headerLogo}>AI playground</span>
+      <ul className={styles.headerLinks}>
         <li>Learn AI</li>
         <li>Docs</li>
-        <li className="profile-link">
-          <img src="https://s3.amazonaws.com/uifaces/faces/twitter/stan/48.jpg" className="avatar" alt="profile image" />
-          <span className="text">Account</span>
+        <li className={styles.profileLink}>
+          <img src="https://s3.amazonaws.com/uifaces/faces/twitter/stan/48.jpg" className={styles.avatar} alt="profile image" />
+          <span className={styles.text}>Account</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="13"

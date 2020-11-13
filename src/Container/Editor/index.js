@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MonacoEditor from "react-monaco-editor";
-import styles from "./styles.css";
+import styles from "./styles.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { setEditor, setInstances, setEditorContent } from "./action";
 
@@ -151,11 +151,11 @@ const Editor = () => {
 
   // Editor header JSX
   const header = () => (
-    <div className="editor-header">
-      <div className="left flex-combined">
+    <div className={styles.editorHeader}>
+      <div className={`${styles.left} ${styles.flexCombined}`}>
         {instances.map((ins, idx) => (
           <div
-            className={`tile ${ins.id == currentTab ? "active" : ""}`}
+            className={`${styles.tile} ${ins.id == currentTab ? styles.active : ""}`}
             key={idx}
             onClick={() => switchTab(ins._associatedResource)}
           >
@@ -167,7 +167,7 @@ const Editor = () => {
             )}
           </div>
         ))}
-        <div className="add-icon" onClick={() => addNewTab()}>
+        <div className={styles.addIcon} onClick={() => addNewTab()}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="8"
@@ -182,9 +182,9 @@ const Editor = () => {
           </svg>
         </div>
       </div>
-      <div className="right flex-combined">
+      <div className={`${styles.right} ${styles.flexCombined}`}>
         <div
-          className={`apply-btn ${isEdited ? "active-btn" : ""}`}
+          className={`${styles.applyBtn} ${isEdited ? styles.activeBtn : ""}`}
           onClick={() => isEdited && applyChanges()}
         >
           <svg
@@ -204,7 +204,7 @@ const Editor = () => {
   );
 
   return (
-    <div className="editor-container">
+    <div className="editorContainer">
       {header()}
       <div
         id="container"

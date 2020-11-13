@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./styles.css";
+import styles from "./styles.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { setMessages, setLoader } from "./actions";
 import DOMPurify from "dompurify";
@@ -81,43 +81,43 @@ const Output = () => {
   const getMessageUi = (data, idx) => {
     return (
       <div
-        className={`quote ${data.type == "incoming" ? "right" : "left"} `}
+        className={`${styles.quote} ${data.type == "incoming" ? styles.right : styles.left} `}
         key={idx}
       >
         <img
-          className="round-avatar"
+          className={styles.roundAvatar}
           src={
             data.type == "incoming"
               ? "https://s3.amazonaws.com/uifaces/faces/twitter/stan/48.jpg"
               : "assets/images/bot.jpg"
           }
         />
-        <div className="speech-bubble left">{data.message}</div>
-        <div className="clear" />
+        <div className={`${styles.speechBubble} ${styles.left}`}>{data.message}</div>
+        <div className={styles.clear} />
       </div>
     );
   };
 
   const loader = () => {
     return (
-      <div className={`quote left`}>
-        <img className="round-avatar" src="assets/images/bot.jpg" />
-        <div className="speech-bubble left">...</div>
-        <div className="clear" />
+      <div className={`${styles.quote} ${styles.left}`}>
+        <img className={styles.roundAvatar} src="assets/images/bot.jpg" />
+        <div className={`${styles.speechBubble} ${styles.left}`}>...</div>
+        <div className={styles.clear} />
       </div>
     );
   };
 
   return (
-    <div className="output-container">
-      <div className="chat-container">
-        <div className="chat-section" id="chat-section">
+    <div className="outputContainer">
+      <div className={styles.chatContainer}>
+        <div className={styles.chatSection} id="chat-section">
           {messages && messages.map((msg, idx) => getMessageUi(msg, idx))}
           {showLoader && loader()}
         </div>
         <input
           type="text"
-          className="input-section"
+          className={styles.inputSection}
           onKeyDown={(e) => onInput(e)}
           placeholder="Type message here…"
         />

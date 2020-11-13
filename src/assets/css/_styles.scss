@@ -1,0 +1,39 @@
+@import "./_variables.scss";
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: $main-background;
+  font-family: "quickstand", sans-serif;
+  margin: 0;
+}
+
+.App {
+  text-align: center;
+  height: 100vh;
+}
+
+*:focus {
+  outline: none;
+}
+
+.flex {
+    display: flex;
+}
+
+.alignCenter {
+    align-items: center;
+}
+
+.jcSpaceBetween {
+    justify-content: space-between;
+}
+
+.jcSpaceEvenly {
+    justify-content: space-evenly;
+}

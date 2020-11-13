@@ -1,20 +1,23 @@
+@import "/src/assets/css/variables";
+
 .header {
     display: flex;
+    flex: 1 100%;
     align-items: center;
     justify-content: space-between;
-    color: #ffffff;
+    color: $white-color;
     border-bottom: solid 2px rgb(255 255 255 / 0.9);
     height: 46px;
 }
 
-.header-logo {
+.headerLogo {
     padding: 10px;
     font-size: 18px;
     opacity: 0.8;
-    font-family: americantypewriter;
+    font-family: "americantypewriter";
 }
 
-.header-links {
+.headerLinks {
     display: flex;
     justify-content: space-evenly;
     list-style-type: none;
@@ -23,29 +26,29 @@
     margin-left: auto;
     font-size: 12px;
     font-weight: 500;
-    color: #c6c6c6;
+    color: $pinkish-grey-color;
     align-items: center; 
+
+    > li {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }
 
-.header-links > li {
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-.profile-link {
+.profileLink {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
 
-.profile-link > .text {
-    margin-left: 8px;
-    margin-right: 8px;
-}
+    > .text {
+        margin-left: 8px;
+        margin-right: 8px;
+    }
 
-.profile-link > img {
-    border-radius: 50%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    float: left;
-    width: 26px;
+    > img {
+        border-radius: 50%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        float: left;
+        width: 26px;
+    }
 }
