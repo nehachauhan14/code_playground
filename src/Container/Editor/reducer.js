@@ -1,11 +1,11 @@
 const initialState = {
     data: {},
     defaultFn: `async function respond(inputText) {
-        let result = await CampK12.translate(inputText, "English", "spanish")
+        let result = await CampK12.translate(inputText, "en", "es")
         return result;
       }`,
     editor: null,
-    currentEditorContent: `async function respond(inputText) { let result = await CampK12.translate(inputText, "English", "spanish")
+    currentEditorContent: `async function respond(inputText) { let result = await CampK12.translate(inputText, "en", "es")
     return result;
     }`,
     instances: [],

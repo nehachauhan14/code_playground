@@ -42,6 +42,7 @@ const Output = () => {
               dispatch(setLoader(false));
             })
             .catch((err) => {
+              console.log("ERROR occured: ", err.message)
               dispatch(setLoader(false));
             });
         } else {
@@ -88,7 +89,7 @@ const Output = () => {
           className={styles.roundAvatar}
           src={
             data.type == "incoming"
-              ? "https://s3.amazonaws.com/uifaces/faces/twitter/stan/48.jpg"
+              ? "assets/images/avatar_comics.png"
               : "assets/images/bot.jpg"
           }
         />

@@ -9,7 +9,7 @@ const Header = () => {
         <li>Learn AI</li>
         <li>Docs</li>
         <li className={`flex jcSpaceBetween alignCenter ${styles.profileLink}`}>
-          <img src="https://s3.amazonaws.com/uifaces/faces/twitter/stan/48.jpg" className={styles.avatar} alt="profile image" />
+          <img src="assets/images/avatar_comics.png" className={styles.avatar} alt="profile image" />
           <span className={styles.text}>Account</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
