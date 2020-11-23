@@ -82,7 +82,7 @@ const Output = () => {
   const getMessageUi = (data, idx) => {
     return (
       <div
-        className={`alignCenter ${styles.quote} ${data.type == "incoming" ? styles.right : styles.left} `}
+        className={`alignCenter ${styles.quote} ${data.type == "incoming" ? styles.left : styles.right} `}
         key={idx}
       >
         <img
@@ -101,7 +101,7 @@ const Output = () => {
 
   const loader = () => {
     return (
-      <div className={`alignCenter ${styles.quote} ${styles.left}`}>
+      <div className={`alignCenter ${styles.quote} ${styles.right}`}>
         <img className={styles.roundAvatar} src="assets/images/bot.jpg" />
         <div className={`${styles.speechBubble} ${styles.left}`}>...</div>
         <div className={styles.clear} />
