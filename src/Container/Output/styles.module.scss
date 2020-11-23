@@ -57,11 +57,15 @@
 }
 
 .speechBubble {
+  font-size: 14px;
   border-radius: 16px;
   background-color: $grey-background;
   margin-left: 10px;
   margin-right: 10px;
-  padding: 10px 15px;
+  padding-top: 0.938rem;
+  padding-bottom: 1.063rem;
+  padding-right: 1.3rem;
+  padding-left: 1.06rem;
   border-radius: 8px;
   color: $light-grey-color;
   float: left;
