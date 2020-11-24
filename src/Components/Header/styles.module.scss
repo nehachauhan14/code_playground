@@ -1,44 +1,90 @@
 @import "/src/assets/css/variables";
 
 .header {
-    flex: 1 100%;
-    color: $white-color;
-    border-bottom: solid 2px $border-color;
-    height: 46px;
+  flex: 1 100%;
+  color: $white-color;
+  border-bottom: solid 2px $border-color;
+  height: 46px;
 }
 
 .headerLogo {
-    padding: 10px;
+  padding: 10px;
+  font-size: 16px;
+  opacity: 0.8;
+  font-family: "americantypewriter";
+  @media (min-width: $breakpoint-tablet) {
     font-size: 18px;
-    opacity: 0.8;
-    font-family: "americantypewriter";
+  }
 }
 
 .headerLinks {
-    list-style-type: none;
-    margin: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 500;
+  color: $pinkish-grey-color;
+  @media (min-width: $breakpoint-tablet) {
     padding: 0;
-    margin-left: auto;
-    font-size: 12px;
-    font-weight: 500;
-    color: $pinkish-grey-color;
-    > li {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
+  }
+
+  > li {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 .profileLink {
+  > .text {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
 
-    > .text {
-        margin-left: 8px;
-        margin-right: 8px;
-    }
+  > img {
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    float: left;
+    width: 26px;
+  }
+}
 
-    > img {
-        border-radius: 50%;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-        float: left;
-        width: 26px;
-    }
+.menu {
+  font-size: 18px;
+  font-weight: 500;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-decoration: none;
+  color: $white-color;
+}
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  font-size: 36px;
 }

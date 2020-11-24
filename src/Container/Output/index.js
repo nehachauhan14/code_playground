@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setMessages, setLoader } from "./actions";
 import DOMPurify from "dompurify";
 
-const Output = () => {
+const Output = (props) => {
   const reducerData = useSelector((state) => state.outputReducer);
   const editorReducerData = useSelector((state) => state.editorReducer);
   const dispatch = useDispatch();
@@ -110,7 +110,7 @@ const Output = () => {
   };
 
   return (
-    <div className="outputContainer">
+    <div className={`outputContainer ${!props.isDesktop ? "mobile" : ""}`}>
       <div className={`flex ${styles.chatContainer}`}>
         <div className={styles.chatSection} id="chat-section">
           {messages && messages.map((msg, idx) => getMessageUi(msg, idx))}

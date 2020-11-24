@@ -3,10 +3,16 @@
 .chatContainer {
   border: none;
   color: aliceblue;
-  padding-top: 7.3rem;
-  padding-right: 4.4rem;
-  padding-left: 5.125rem;
+  padding-top: 4rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
   flex-direction: column;
+
+  @media (min-width: $breakpoint-tablet) {
+      padding-top: 7.3rem;
+      padding-right: 4.4rem;
+      padding-left: 5.125rem;
+  }
 
   .chatSection {
     overflow-y: auto;
