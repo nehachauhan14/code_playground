@@ -99,8 +99,6 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: "[name].[contentHash].css",
     }),
-    new MonacoWebpackPlugin({
-      languages: ["javascript"],
-    }),
+    new MonacoWebpackPlugin(),
   ],
 };

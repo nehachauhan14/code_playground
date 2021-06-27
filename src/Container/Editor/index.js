@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import MonacoEditor from "react-monaco-editor";
 import styles from "./styles.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { setEditor, setInstances, setEditorContent } from "./action";
+import * as monaco from 'monaco-editor';
 
 const Editor = () => {
   const reducerData = useSelector((state) => state.editorReducer);
